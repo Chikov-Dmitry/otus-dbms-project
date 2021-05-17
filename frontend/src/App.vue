@@ -1,46 +1,39 @@
 <template>
   <v-app>
     <v-navigation-drawer
-    v-model="drawer"
-    absolute
-    bottom
-    temporary
+      app
+      :expand-on-hover="$vuetify.breakpoint.mdAndUp"
+      left
+      v-model="showNavigation"
+      :value="$vuetify.breakpoint.smAndDown ? drawer : true"
+      mobile-breakpoint="960"
+      bottom
+      color="secondary"
+      dark
     >
-    <v-list
-        nav
-        dense
-    >
-      <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-      >
-        <v-list-item>
-          <v-list-item-title>Foo</v-list-item-title>
+      <v-divider></v-divider>
+      <v-list nav dense>
+        <v-list-item link to="/login">
+          <v-list-item-icon>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Войти</v-list-item-title>
         </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Bar</v-list-item-title>
+        <v-list-item link to="/products">
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-bulleted-square</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Товары</v-list-item-title>
         </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Fizz</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Buzz</v-list-item-title>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <div class="d-flex align-center">
-        <h1>Интернет магазин</h1>
-      </div>
-
-      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon
+        v-if="$vuetify.breakpoint.smAndDown"
+        @click="drawer = !drawer"
+      ></v-app-bar-nav-icon>
+      <v-toolbar-title @click="goHome" style="cursor: pointer">Интернет магазин</v-toolbar-title>
 
     </v-app-bar>
 
@@ -52,19 +45,31 @@
 
 <script lang="ts">
 import Vue from "vue";
-
 export default Vue.extend({
   name: "App",
-
+  components: {},
   data: () => ({
-    drawer: false,
     group: null,
-
+    drawer: false,
+    mini: true,
   }),
-  watch: {
-    group () {
-      this.drawer = false
-    },
+  computed: {
+    showNavigation:{
+      get: function(){
+        if(this.$vuetify.breakpoint.mdAndUp){
+          return true
+        }
+        return this.drawer
+      },
+      set: function (newVal:boolean){
+        return this.drawer = newVal
+      }
+    }
+  },
+  methods: {
+    goHome: function (){
+      this.$router.push('/')
+    }
   },
 });
 </script>

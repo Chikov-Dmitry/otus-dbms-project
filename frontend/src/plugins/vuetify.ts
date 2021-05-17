@@ -3,7 +3,6 @@ import Vuetify from "vuetify/lib/framework";
 import ru from "vuetify/src/locale/ru";
 import { VFlex, VLayout, VContainer, VImg, VRow, VCol } from "vuetify/lib";
 
-
 Vue.use(Vuetify, {
   components: { VFlex, VLayout, VContainer, VImg, VRow, VCol },
 });

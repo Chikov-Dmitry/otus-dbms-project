@@ -1,8 +1,6 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-
-    </v-row>
+    <v-row class="text-center"> старт страница </v-row>
   </v-container>
 </template>
 
@@ -11,10 +9,8 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "HelloWorld",
-  components: {
-  },
+  components: {},
 
-  data: () => ({
-  }),
+  data: () => ({}),
 });
 </script>
