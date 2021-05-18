@@ -36,6 +36,33 @@
       <v-toolbar-title @click="goHome" style="cursor: pointer"
         >Интернет магазин</v-toolbar-title
       >
+      <v-spacer/>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+
+            <v-btn
+                class="ma-2"
+                text
+                icon
+                v-bind="attrs"
+                v-on="on"
+                to="/cart"
+            >
+              <v-badge
+                  :content="countProductsCart"
+                  :value="countProductsCart"
+                  color="warning"
+                  overlap
+              >
+              <v-icon  large>mdi-cart</v-icon>
+              </v-badge>
+            </v-btn>
+
+
+        </template>
+        <span>Корзина</span>
+      </v-tooltip>
+
     </v-app-bar>
 
     <v-main>
@@ -53,6 +80,7 @@ export default Vue.extend({
     group: null,
     drawer: false,
     mini: true,
+    countCart: 2
   }),
   computed: {
     showNavigation: {
@@ -66,6 +94,9 @@ export default Vue.extend({
         return (this.drawer = newVal);
       },
     },
+    countProductsCart: function (){
+      return this.$store.getters.get_count_products_cart
+    }
   },
   methods: {
     goHome: function () {

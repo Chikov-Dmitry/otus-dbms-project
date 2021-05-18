@@ -15,7 +15,7 @@
     </v-list-item>
     <v-card-actions>
         <v-spacer/>
-      <v-btn outlined rounded text> В корзину </v-btn>
+      <v-btn @click="addToCart" outlined rounded text > В корзину </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -25,7 +25,12 @@ export default {
   name: "ProductCard",
     props:{
       product: Object
+    },
+  methods:{
+    addToCart: function (){
+      this.$store.commit("ADD_PRODUCTS_CART", this.product)
     }
+  }
 };
 </script>
 
