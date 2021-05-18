@@ -14,12 +14,9 @@ function loadLocaleMessages(): LocaleMessages {
     const matched = key.match(/([A-Za-z0-9-_]+)\./i);
     if (matched && matched.length > 1) {
       const locale = matched[1];
-      console.log(key);
-      console.log(locales(key));
       messages[locale] = locales(key);
     }
   });
-  console.log(messages);
   return messages;
 }
 

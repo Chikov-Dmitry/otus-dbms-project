@@ -33,8 +33,6 @@ module.exports = function(app, db) {
             });
         };
         myPromise().then(result=>{
-            console.log('res')
-            console.log(result)
             res.send(result)
         })
 

@@ -33,8 +33,9 @@
         v-if="$vuetify.breakpoint.smAndDown"
         @click="drawer = !drawer"
       ></v-app-bar-nav-icon>
-      <v-toolbar-title @click="goHome" style="cursor: pointer">Интернет магазин</v-toolbar-title>
-
+      <v-toolbar-title @click="goHome" style="cursor: pointer"
+        >Интернет магазин</v-toolbar-title
+      >
     </v-app-bar>
 
     <v-main>
@@ -54,22 +55,22 @@ export default Vue.extend({
     mini: true,
   }),
   computed: {
-    showNavigation:{
-      get: function(){
-        if(this.$vuetify.breakpoint.mdAndUp){
-          return true
+    showNavigation: {
+      get: function () {
+        if (this.$vuetify.breakpoint.mdAndUp) {
+          return true;
         }
-        return this.drawer
+        return this.drawer;
       },
-      set: function (newVal:boolean){
-        return this.drawer = newVal
-      }
-    }
+      set: function (newVal: boolean) {
+        return (this.drawer = newVal);
+      },
+    },
   },
   methods: {
-    goHome: function (){
-      this.$router.push('/')
-    }
+    goHome: function () {
+      this.$router.push("/");
+    },
   },
 });
 </script>

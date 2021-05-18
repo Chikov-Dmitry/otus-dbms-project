@@ -1,5 +1,7 @@
 <template>
-  <div>login</div>
+  <v-container>
+    <v-row class="text-center"> Вход</v-row>
+  </v-container>
 </template>
 
 <script>

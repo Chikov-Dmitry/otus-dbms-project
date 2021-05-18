@@ -27,7 +27,10 @@ async function run() {
         // Establish and verify connection
         await client.db(config.dbName).command({ ping: 1 });
         let db = client.db(config.dbName)
-        console.log("Connected successfully to server");
+        console.log("Connected successfully to database");
+
+        require('./initialDataBase')(db);
+
         require('./routes')(app, db);
         app.listen(config.port, () => {
             console.log('We are live on ' + config.port);
