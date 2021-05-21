@@ -14,7 +14,7 @@ const store: StoreOptions<RootState> = {
   actions: {},
   modules: {
     product,
-    cart
+    cart,
   },
 };
 

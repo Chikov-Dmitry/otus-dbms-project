@@ -1,6 +1,6 @@
 <template>
   <v-container class="mt-4">
-      <v-row><p class="text-h4">Товары</p></v-row>
+    <v-row><p class="text-h4">Товары</p></v-row>
     <v-row class="justify-space-between">
       <product-card
         v-for="(item, index) in products"
@@ -19,7 +19,6 @@ export default {
   components: { ProductCard },
   computed: {
     products: function () {
-      console.log(this.$store.state.product.product);
       return this.$store.state.product.product;
     },
   },
