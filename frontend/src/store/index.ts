@@ -3,6 +3,7 @@ import Vuex, { StoreOptions } from "vuex";
 import { RootState } from "@/store/types";
 import { product } from "./product";
 import { cart } from "./cart";
+import { category } from "./category"
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ const store: StoreOptions<RootState> = {
   modules: {
     product,
     cart,
+    category
   },
 };
 
