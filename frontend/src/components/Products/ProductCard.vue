@@ -9,12 +9,16 @@
           {{ product.category }}
         </v-list-item-subtitle>
         <div class="text-right">
+          <p>
+           В наличии: {{product.count}}
+          </p>
           <p class="font-weight-bold mb-0 mt-2">
             {{ product.price
             }}<v-icon small color="black" class="font-weight-bold"
               >mdi-currency-rub</v-icon
             >
           </p>
+
         </div>
       </v-list-item-content>
     </v-list-item>

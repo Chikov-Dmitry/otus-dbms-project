@@ -1,12 +1,20 @@
+let ObjectId = require('mongodb').ObjectId;
+
 module.exports = function (app, db){
     app.post('/order', (req, res) => {
         const order = req.body;
-        console.log(order)
         db.collection("order").insertOne(order, (err, result) => {
             if (err) {
                 console.log(err)
                 res.send({ 'error': 'An error has occurred' });
             } else {
+                order.products.forEach(item=>{
+                    let id = item._id;
+                    let o_id = new ObjectId(id);
+                    db.collection('product').updateOne({_id: o_id}, {$inc: {count: -item.orderCount}}, (err)=>{
+                        if (err) return console.warn(err)
+                    })
+                })
                 res.send(result.ops[0]);
             }
         });

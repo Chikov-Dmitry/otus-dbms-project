@@ -1,4 +1,4 @@
-var ObjectId = require('mongodb').ObjectId;
+let ObjectId = require('mongodb').ObjectId;
 module.exports = function(app, db) {
     app.post('/product', (req, res) => {
         const product = { name: req.body.name, category: req.body.category, characteristic: req.body.characteristic };
