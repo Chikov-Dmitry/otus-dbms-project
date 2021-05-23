@@ -6,7 +6,7 @@ import { mutations } from "@/store/product/mutations";
 import { actions } from "@/store/product/actions";
 
 const state: ProductState = {
-  product: [],
+  productList: [],
 };
 
 export const product: Module<ProductState, RootState> = {

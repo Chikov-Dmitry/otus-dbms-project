@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mb-8" max-width="344" min-width="250" outlined>
+  <v-card class="mb-8" max-width="344" min-width="250" outlined @click="goToProductInfo">
     <v-list-item three-line>
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">
@@ -20,7 +20,7 @@
     </v-list-item>
     <v-card-actions>
       <v-spacer />
-      <v-btn @click="addToCart" outlined rounded text :disabled="inCart">
+      <v-btn @click.stop="addToCart" outlined rounded text :disabled="inCart">
         В корзину
       </v-btn>
     </v-card-actions>
@@ -41,6 +41,10 @@ export default {
       this.$store.commit("ADD_PRODUCTS_CART", this.product);
       this.inCart = true;
     },
+    goToProductInfo: function (){
+      console.log('go')
+      this.$router.push({name: 'Product', query: {id: this.product._id} })
+    }
   },
 };
 </script>

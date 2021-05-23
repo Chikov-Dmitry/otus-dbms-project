@@ -1,3 +1,4 @@
+var ObjectId = require('mongodb').ObjectId;
 module.exports = function(app, db) {
     app.post('/product', (req, res) => {
         const product = { name: req.body.name, category: req.body.category, characteristic: req.body.characteristic };
@@ -15,10 +16,14 @@ module.exports = function(app, db) {
         if(req.query.name){
             query.name =req.query.name
         }
+        if(req.query.id){
+            let id = req.query.id;
+            let o_id = new ObjectId(id);
+            query._id = o_id
+        }
         const options = {
             sort: { name: 1 },
         };
-
         let myPromise = () => {
             return new Promise((resolve, reject) => {
 

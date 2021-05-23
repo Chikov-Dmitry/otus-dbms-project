@@ -19,11 +19,11 @@ export default {
   components: { ProductCard },
   computed: {
     products: function () {
-      return this.$store.state.product.product;
+      return this.$store.state.product.productList;
     },
   },
   created: function () {
-    this.$store.dispatch("LOAD_PRODUCTS");
+    this.$store.dispatch("LOAD_PRODUCTS_LIST");
   },
 };
 </script>
