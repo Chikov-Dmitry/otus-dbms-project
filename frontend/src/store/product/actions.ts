@@ -4,8 +4,8 @@ import { RootState } from "@/store/types";
 import axios from "axios";
 
 export const actions: ActionTree<ProductState, RootState> = {
-  LOAD_PRODUCTS_LIST({ commit }) {
-    return axios.get("/product").then((result) => {
+  LOAD_PRODUCTS_LIST({ commit }, query) {
+    return axios.get(`/product?${query}`).then((result) => {
       commit("CHANGE_PRODUCT_LIST", result.data);
       return result.data;
     });

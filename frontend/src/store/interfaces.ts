@@ -9,4 +9,5 @@ export interface ProductInt {
     rom?: string;
     os?: string;
   };
+  orderCount?: number;
 }

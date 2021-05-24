@@ -12,21 +12,20 @@
           color="accent"
         ></v-text-field>
         <v-text-field
-            v-model="surname"
-            :counter="20"
-            :rules="surnameRules"
-            label="Фамилия"
-            required
-            color="accent"
-
+          v-model="surname"
+          :counter="20"
+          :rules="surnameRules"
+          label="Фамилия"
+          required
+          color="accent"
         ></v-text-field>
 
         <v-text-field
-            v-model="phone"
-            :rules="phoneRules"
-            label="Номер телефона"
-            required
-            color="accent"
+          v-model="phone"
+          :rules="phoneRules"
+          label="Номер телефона"
+          required
+          color="accent"
         ></v-text-field>
 
         <v-text-field
@@ -38,89 +37,93 @@
         ></v-text-field>
 
         <v-text-field
-            v-model="city"
-            :counter="20"
-            :rules="cityRules"
-            label="Город"
-            required
-            color="accent"
+          v-model="city"
+          :counter="20"
+          :rules="cityRules"
+          label="Город"
+          required
+          color="accent"
         ></v-text-field>
 
         <v-text-field
-            v-model="street"
-            :counter="20"
-            :rules="streetRules"
-            label="Улица"
-            required
-            color="accent"
+          v-model="street"
+          :counter="20"
+          :rules="streetRules"
+          label="Улица"
+          required
+          color="accent"
         ></v-text-field>
 
         <v-text-field
-            v-model="house"
-            :counter="5"
-            :rules="houseRules"
-            label="Дом, корпус"
-            required
-            color="accent"
+          v-model="house"
+          :counter="5"
+          :rules="houseRules"
+          label="Дом, корпус"
+          required
+          color="accent"
         ></v-text-field>
         <v-text-field
-            v-model="flat"
-            :counter="4"
-            :rules="flatRules"
-            label="Квартира"
-            required
-            color="accent"
+          v-model="flat"
+          :counter="4"
+          :rules="flatRules"
+          label="Квартира"
+          required
+          color="accent"
         ></v-text-field>
 
         <v-textarea
-            outlined
-            label="Пожелание к заказу"
-            auto-grow
-            rows="1"
-            append-outer-icon="mdi-comment"
-            :rules="areaRules"
-            :value="area"
-            v-model="area"
-            counter
-            color="accent"
+          outlined
+          label="Пожелание к заказу"
+          auto-grow
+          rows="1"
+          append-outer-icon="mdi-comment"
+          :rules="areaRules"
+          :value="area"
+          v-model="area"
+          counter
+          color="accent"
         ></v-textarea>
         <v-card>
           <v-card-text>
             <v-list shaped>
               <v-subheader>ЗАКАЗ</v-subheader>
-              <v-list-item-group
-                  color="primary"
-              >
+              <v-list-item-group color="primary">
+                <v-list-item
+                  v-for="(product, index) in orderProducts"
+                  :key="index"
+                >
+                  <v-list-item-content class="text-left">
+                    <v-list-item-title
+                      v-text="product.name"
+                    ></v-list-item-title>
 
-              <v-list-item v-for="(product, index) in orderProducts" :key="index">
-              <v-list-item-content class="text-left">
-                <v-list-item-title v-text="product.name"></v-list-item-title>
+                    <v-list-item-subtitle
+                      class="text--primary"
+                      v-text="product.category"
+                    ></v-list-item-subtitle>
+                  </v-list-item-content>
 
-                <v-list-item-subtitle
-                    class="text--primary"
-                    v-text="product.category"
-                ></v-list-item-subtitle>
-              </v-list-item-content>
-
-              <v-list-item-action class="flex-column justify-start">
-                <p>Количество: {{ product.orderCount }}</p>
-                <p>Сумма: {{ product.price * product.orderCount }}<v-icon small color="black" class="font-weight-bold">mdi-currency-rub</v-icon></p>
-              </v-list-item-action>
-            </v-list-item>
+                  <v-list-item-action class="flex-column justify-start">
+                    <p>Количество: {{ product.orderCount }}</p>
+                    <p>
+                      Сумма: {{ product.price * product.orderCount
+                      }}<v-icon small color="black" class="font-weight-bold"
+                        >mdi-currency-rub</v-icon
+                      >
+                    </p>
+                  </v-list-item-action>
+                </v-list-item>
               </v-list-item-group>
             </v-list>
-            <p class="text-right font-weight-bold text-h5">Итого: {{orderSum}}</p>
+            <p class="text-right font-weight-bold text-h5">
+              Итого: {{ orderSum }}
+            </p>
           </v-card-text>
         </v-card>
         <div class="d-flex justify-end mt-8">
-        <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="order"
-        >
-          заказать
-        </v-btn>
+          <v-btn :disabled="!valid" color="success" class="mr-4" @click="order">
+            заказать
+          </v-btn>
         </div>
       </v-form>
     </v-row>
@@ -156,7 +159,7 @@ export default {
     phoneRules: [
       (v) => !!v || "phone is required",
       (v) =>
-          /^\+?[78][-(]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/.test(v) ||
+        /^\+?[78][-(]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/.test(v) ||
         "phone number must be valid",
     ],
     city: "",
@@ -180,25 +183,25 @@ export default {
       (v) => (v && v.length <= 4) || "должно быть меньше 4 символов",
     ],
     area: "",
-    areaRules: [v => v.length <= 100 || 'максимум 100 символов']
+    areaRules: [(v) => v.length <= 100 || "максимум 100 символов"],
   }),
-  computed:{
-    orderProducts: function (){
-      return this.$store.state.cart.productsCart
+  computed: {
+    orderProducts: function () {
+      return this.$store.state.cart.productsCart;
     },
-    orderSum: function (){
+    orderSum: function () {
       let sum = 0;
-      this.orderProducts.forEach(product =>{
-        sum += product.orderCount * product.price
-      })
-      return sum
-    }
+      this.orderProducts.forEach((product) => {
+        sum += product.orderCount * product.price;
+      });
+      return sum;
+    },
   },
   methods: {
     order() {
       this.$refs.form.validate();
-      if(this.$refs.form.validate()){
-        let order ={
+      if (this.$refs.form.validate()) {
+        let order = {
           name: this.name,
           surname: this.surname,
           phone: this.phone,
@@ -211,24 +214,25 @@ export default {
           },
           note: this.area,
           products: this.orderProducts,
-          orderSum: this.orderSum
-        }
-        console.log(order)
+          orderSum: this.orderSum,
+        };
+        console.log(order);
 
         axios({
-          method: 'post',
-          url: '/order',
-          data: order
-        }).then(res=>{
-          this.$store.commit('CLEAR_PRODUCT_CART')
-          this.$router.push('/thanks')
-          console.log(res)
-        }).catch(err=>{
-          console.warn(err)
+          method: "post",
+          url: "/order",
+          data: order,
         })
+          .then((res) => {
+            this.$store.commit("CLEAR_PRODUCT_CART");
+            this.$router.push("/thanks");
+            console.log(res);
+          })
+          .catch((err) => {
+            console.warn(err);
+          });
       }
     },
-
   },
 };
 </script>

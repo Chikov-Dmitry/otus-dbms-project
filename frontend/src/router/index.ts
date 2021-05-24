@@ -5,9 +5,9 @@ import ViewProducts from "../views/ViewProducts.vue";
 import ViewLogin from "../views/ViewLogin.vue";
 import ViewCart from "../views/ViewCart.vue";
 import ViewOrder from "../views/ViewOrder.vue";
-import ViewThanks from "../views/viewThanks.vue"
-import ViewCategory from "../views/ViewCategory.vue"
-import ViewProductInfo from "../views/ViewProductInfo.vue"
+import ViewThanks from "../views/viewThanks.vue";
+import ViewCategory from "../views/ViewCategory.vue";
+import ViewProductInfo from "../views/ViewProductInfo.vue";
 
 Vue.use(VueRouter);
 

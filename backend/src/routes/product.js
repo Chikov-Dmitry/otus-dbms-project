@@ -24,22 +24,56 @@ module.exports = function(app, db) {
         const options = {
             sort: { name: 1 },
         };
+        if(!req.query.limit) {
+            let myPromise = () => {
+                return new Promise((resolve, reject) => {
+
+                    db
+                        .collection('product')
+                        .find(query, options)
+                        .toArray(function (err, data) {
+                            err
+                                ? reject(err)
+                                : resolve(data);
+                        });
+                });
+            };
+            myPromise().then(result => {
+                res.send(result)
+            })
+        }else{
+            let myPromise = () => {
+                return new Promise((resolve, reject) => {
+
+                    db
+                        .collection('product')
+                        .find(query, options).skip(req.query.skip? Number(req.query.skip) : 0).limit(Number(req.query.limit))
+                        .toArray(function (err, data) {
+                            err
+                                ? reject(err)
+                                : resolve(data);
+                        });
+                });
+            };
+            myPromise().then(result => {
+                res.send(result)
+            })
+        }
+
+    })
+    app.get('/countproducts', (req,res)=>{
         let myPromise = () => {
             return new Promise((resolve, reject) => {
 
                 db
                     .collection('product')
-                    .find(query, options)
-                    .toArray(function(err, data) {
-                        err
-                            ? reject(err)
-                            : resolve(data);
-                    });
+                    .countDocuments({}, {}, (err, count)=>{
+                        err ? reject(err) : resolve({count: count})
+                    })
             });
         };
         myPromise().then(result=>{
             res.send(result)
         })
-
     })
 };

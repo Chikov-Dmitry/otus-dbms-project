@@ -15,7 +15,8 @@
         </v-list-item-group>
       </v-list>
       <div class="d-flex pr-8" style="width: 100%">
-        <v-spacer /><v-btn @click="order" color="primary">Оформить</v-btn>
+        <v-spacer /><v-btn @click="clearCart">Очистить корзину</v-btn
+        ><v-btn @click="order" color="primary">Оформить</v-btn>
       </div>
     </v-row>
     <v-row class="mt-8"> </v-row>
@@ -29,6 +30,7 @@ export default {
   components: {
     CartItem,
   },
+  data: () => ({}),
   computed: {
     countProductsCart: function () {
       return this.$store.getters.get_count_products_cart;
@@ -41,8 +43,10 @@ export default {
     order: function () {
       this.$router.push("/order");
     },
+    clearCart: function () {
+      this.$store.commit("CLEAR_PRODUCT_CART");
+    },
   },
-
 };
 </script>
 

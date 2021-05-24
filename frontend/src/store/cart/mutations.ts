@@ -6,6 +6,8 @@ export const mutations: MutationTree<CartState> = {
   ADD_PRODUCTS_CART(state, payload) {
     payload.orderCount = 1;
     state.productsCart.push(payload);
+    const parsed = JSON.stringify(state.productsCart);
+    localStorage.setItem("productsCart", parsed);
   },
   CHANGE_COUNT_CART(state, payload) {
     const productID = payload.product._id;
@@ -17,7 +19,9 @@ export const mutations: MutationTree<CartState> = {
       }
     });
   },
-  CLEAR_PRODUCT_CART(state){
-    state.productsCart = []
-  }
+  CLEAR_PRODUCT_CART(state) {
+    state.productsCart = [];
+    const parsed = JSON.stringify(state.productsCart);
+    localStorage.setItem("productsCart", parsed);
+  },
 };

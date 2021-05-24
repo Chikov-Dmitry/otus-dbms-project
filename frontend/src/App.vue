@@ -13,7 +13,6 @@
     >
       <v-divider></v-divider>
       <v-list nav dense>
-
         <v-list-item link to="/login">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
@@ -69,6 +68,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { ProductInt } from "./store/interfaces";
 export default Vue.extend({
   name: "App",
   components: {},
@@ -98,6 +98,20 @@ export default Vue.extend({
     goHome: function () {
       this.$router.push("/");
     },
+  },
+  mounted() {
+    if (localStorage.getItem("productsCart")) {
+      try {
+        let productsCartStorage = JSON.parse(
+          localStorage.getItem("productsCart")!
+        );
+        productsCartStorage.forEach((item: ProductInt) => {
+          this.$store.commit("ADD_PRODUCTS_CART", item);
+        });
+      } catch (e) {
+        localStorage.removeItem("productsCart");
+      }
+    }
   },
 });
 </script>

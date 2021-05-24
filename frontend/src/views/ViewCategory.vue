@@ -1,15 +1,13 @@
 <template>
-  <category/>
+  <category />
 </template>
 
 <script>
 import Category from "../components/Category/Category";
 export default {
   name: "ViewCategory",
-  components: {Category}
-}
+  components: { Category },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
